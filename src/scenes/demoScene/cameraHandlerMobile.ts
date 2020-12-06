@@ -3,7 +3,7 @@ import p5 from "p5";
 import Vector2 from "../../engine/physics/vector2";
 import GlobalGameEngine from "../../engine/gameEngine";
 import Camera from "../../engine/camera";
-import IPinchHandler from "../../engine/interfaces/IPinchHandler";
+import IPinchHandler, { IPinchType } from "../../engine/interfaces/IPinchHandler";
 import IPanHandler from "../../engine/interfaces/IPanHandler";
 
 export default class CameraHandlerMobile
@@ -24,7 +24,7 @@ export default class CameraHandlerMobile
 
   update() {}
 
-  onPinch(type: string, scale: number) {
+  onPinch(type: IPinchType, scale: number) {
     if (type == "pinchstart") {
       this.initScale = this.camera.scale.x || 1;
     }

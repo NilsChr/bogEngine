@@ -1,3 +1,8 @@
 export default interface IPinchHandler {
-    onPinch(type: string, scale: number);
+    onPinch(type: IPinchType, scale: number);
+}
+
+export enum IPinchType {
+    PINCHSTART = 'pinchstart',
+    PINCHMOVE = 'pinchmove'
 }

@@ -21,6 +21,13 @@ export default class Camera {
         return worldPos;
     }
 
+    setScale(scalarVec: Vector2) {
+        this.scale = scalarVec;
+
+        this.dim.x = window.innerWidth  / scalarVec.x;
+        this.dim.y = window.innerHeight / scalarVec.y;
+    }
+
     left() {
         return 0;
     }

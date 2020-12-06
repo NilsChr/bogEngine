@@ -7,6 +7,7 @@ import { StateManager } from "./engine/managers/stateManager/stateManager";
 import GlobalInput from "./engine/input";
 import Vector2 from "./engine/physics/vector2";
 import "hammerjs";
+import Time from "./engine/managers/time";
 
 console.log(process.env.NODE_ENV);
 
@@ -22,6 +23,7 @@ const sketch = function (p: p5) {
   };
   p.draw = function () {
     p.background(0);
+    Time.deltaTime = p.deltaTime / 1000;
 
     GlobalInput.held = [...GlobalInput.held, ...GlobalInput.pressed].filter(
       (e) => !GlobalInput.released.includes(e)
@@ -75,19 +77,8 @@ const sketch = function (p: p5) {
       GlobalGameEngine.touchPan(pos, pan);
     });
 
-    var initScale = 1;
     mc.on("pinchstart pinchmove", function (ev) {
-      //return;
-      
-      console.log(ev);
-      let camera = GlobalGameEngine.getCamera();
-      if (ev.type == "pinchstart") {
-        initScale = camera.scale.x || 1;
-      }
-
-      camera.scale.x = initScale * ev.scale;
-      camera.scale.y = initScale * ev.scale;
-      
+      GlobalGameEngine.pinch(ev.type, ev.scale);
     });
   }
 };

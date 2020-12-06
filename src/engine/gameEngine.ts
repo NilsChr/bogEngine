@@ -68,7 +68,7 @@ class GameEngine {
   }
 
   public getCamera(): Camera {
-      return this.camera;
+    return this.camera;
   }
 
   public addGameObject(gameObject: GameObject) {
@@ -166,11 +166,23 @@ class GameEngine {
 
   public touchPan(pos: Vector2, pan: Vector2) {
     this.gameObjects
-    .filter((o) => (<any>o).touchPan != null)
-    .forEach((o) => (<any>o).touchPan(pos, pan));
-  this.guiElements
-    .filter((o) => (<any>o).touchPan != null)
-    .forEach((o) => (<any>o).touchPan(pos, pan));
+      .filter((o) => (<any>o).touchPan != null)
+      .forEach((o) => (<any>o).touchPan(pos, pan));
+    this.guiElements
+      .filter((o) => (<any>o).touchPan != null)
+      .forEach((o) => (<any>o).touchPan(pos, pan));
+  }
+
+  public pinch(type:string, scale: number) {
+      
+    this.gameObjects
+      .filter((o) => (<any>o).onPinch != null)
+      .forEach((o) => (<any>o).onPinch(type, scale));
+    this.guiElements
+      .filter((o) => (<any>o).onPinch != null)
+      .forEach((o) => (<any>o).onPinch(type, scale));
+      
+
   }
 }
 

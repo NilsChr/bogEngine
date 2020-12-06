@@ -3,6 +3,7 @@ import GlobalGameEngine from "../../engine/gameEngine";
 import { Scene } from "../../engine/models/scene";
 import Vector2 from "../../engine/physics/vector2";
 import Bossman from "./bossman";
+import CameraHandlerMobile from "./cameraHandlerMobile";
 
 export default class DemoScene extends Scene {
   constructor() {
@@ -11,6 +12,7 @@ export default class DemoScene extends Scene {
 
   init() {
     GlobalGameEngine.setupCamera(new Camera(new Vector2(50,50), new Vector2(1,1)));
+    GlobalGameEngine.addGameObject(new CameraHandlerMobile(null));
 
     GlobalGameEngine.addGameObject(new Bossman(new Vector2(0,0)));
 

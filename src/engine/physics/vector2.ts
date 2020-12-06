@@ -30,6 +30,11 @@ export default class Vector2 {
       this.x *= scalar;
       this.y *= scalar;
     }
+
+    multiplyByOther(vec: Vector2) {
+        this.x *= vec.x;
+        this.y *= vec.y;
+      }
   
     distanceTo(vec: Vector2) {
       var dist = Math.sqrt(

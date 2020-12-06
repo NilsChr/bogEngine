@@ -28,10 +28,10 @@ export default class Bossman extends GameObject {
     update() {
         this.pos.addTo(new Vector2(1,1));
 
-        if(this.pos.x > this.camera.dim.x) {
+        if(this.pos.x > this.camera.right()) {
             this.pos.x = 0;
         }
-        if(this.pos.y > this.camera.dim.y) {
+        if(this.pos.y > this.camera.bottom()) {
             this.pos.y = 0;
         }
     }

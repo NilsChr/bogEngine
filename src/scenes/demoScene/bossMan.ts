@@ -5,12 +5,15 @@ import Vector2 from "../../engine/physics/vector2";
 import Assets from "../../engine/managers/assetManager/assets";
 import GlobalGameEngine from "../../engine/gameEngine";
 import Camera from "../../engine/camera";
+import Time from "../../engine/managers/time";
 
 export default class Bossman extends GameObject {
 
     pos: Vector2;
 
     camera: Camera;
+
+    img: p5.Image;
 
     constructor(pos: Vector2) {
         super('Bossman');
@@ -19,14 +22,19 @@ export default class Bossman extends GameObject {
         this.camera = GlobalGameEngine.getCamera();
 
         console.log(this.camera)
+        this.img = AssetManager.getImage(Assets.boss.key);
     }
 
     render(p5: p5) {
-        p5.image(AssetManager.getImage(Assets.boss.key), this.pos.x,this.pos.y);
+        p5.fill(255,0,0);
+        p5.rect(100,100,100,100);
+        p5.image(this.img, this.pos.x,this.pos.y);
     }
 
     update() {
-        this.pos.addTo(new Vector2(1,1));
+        let velocity = new Vector2(50,50);
+        velocity.multiplyBy(Time.deltaTime);
+        this.pos.addTo(velocity);
 
         if(this.pos.x > this.camera.right()) {
             this.pos.x = 0;

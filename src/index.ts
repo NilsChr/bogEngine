@@ -8,6 +8,7 @@ import GlobalInput from "./engine/input";
 import Vector2 from "./engine/physics/vector2";
 import "hammerjs";
 import Time from "./engine/managers/time";
+import { EventManager } from "./engine/managers/eventManager/eventManager";
 
 console.log(process.env.NODE_ENV);
 
@@ -68,6 +69,7 @@ const sketch = function (p: p5) {
     });
     mc.on("tap", function (ev) {
       GlobalGameEngine.mouseReleased(ev.center.x, ev.center.y);
+      //EventManager.emit('tap');
     });
 
     mc.on("pan", function (ev: any) {
